@@ -6,7 +6,7 @@ class Clock extends Component {
     constructor(props) {
          super(props);
          this.state = {
-             actual_state: 'stopped',
+             isStarted: false,
              actual_time: 0    
          }
          this.start_timer = this.start_timer.bind(this);
@@ -20,13 +20,26 @@ class Clock extends Component {
     }
 
     start_timer() {
-        this.interval = setInterval(() => {
-            this.increment_time()
-        }, 1000);
+       if(!this.state.isStarted) {
+            this.interval = setInterval(() => {
+                this.increment_time()
+            }, 1000);
+
+
+            this.setState((state, props) => ({
+                isStarted: !state.isStarted
+            }));
+            
+        }     
     }
 
     stop_timer() {
         clearInterval(this.interval);
+        
+        this.setState((state, props) => ({
+            isStarted: !state.isStarted
+        }));
+
     }
 
     restart_timer() {
