@@ -27,10 +27,10 @@ class Clock extends Component {
                 this.increment_time()
              }, 1000); 
            
-             //Após começar a contar volta a FLAG para falso
-             this.setState((state, props) => ({
+            //Após começar a contar volta a FLAG para falso
+            this.setState((state, props) => ({
                 isStarted: !state.isStarted
-            }));       
+        }));       
        }        
     }
 
@@ -45,10 +45,11 @@ class Clock extends Component {
     }
 
     restart_timer() {
-
-        this.setState((state, props) => ({
-            actual_time: state.actual_time = 0,
-        }));    
+        if(this.state.actual_time > 0) {
+            this.setState((state, props) => ({
+                actual_time: state.actual_time = 0,
+            }));    
+        }
     }
 
     componentDidMount() {
