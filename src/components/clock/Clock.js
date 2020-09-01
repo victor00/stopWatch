@@ -19,38 +19,41 @@ class Clock extends Component {
         this.setState({actual_time: this.state.actual_time + 1});
     }
 
-    start_timer() {
+    start_timer = () => {
+        
+        //Inicia o Contador
        if(!this.state.isStarted) {
             this.interval = setInterval(() => {
                 this.increment_time()
-            }, 1000);
-
-
-            this.setState((state, props) => ({
+             }, 1000); 
+           
+             //Após começar a contar volta a FLAG para falso
+             this.setState((state, props) => ({
                 isStarted: !state.isStarted
-            }));
-            
-        }     
+            }));       
+       }        
     }
 
     stop_timer() {
         clearInterval(this.interval);
         
+        // Ao pausar volta a Flag para Falso
         this.setState((state, props) => ({
-            isStarted: !state.isStarted
+            isStarted: false 
         }));
-
+        
     }
 
     restart_timer() {
+
         this.setState((state, props) => ({
-            actual_time: state.actual_time = 0
-        }));
-        // this.setState({actual_time: this.state.actual_time = 0});
+            actual_time: state.actual_time = 0,
+        }));    
     }
 
     componentDidMount() {
         document.title = "Stopwatch"
+     
         // this.start_timer();
     }
 
