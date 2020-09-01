@@ -50,6 +50,7 @@ class Clock extends Component {
     }
 
     componentDidMount() {
+        document.title = "Stopwatch"
         // this.start_timer();
     }
 
