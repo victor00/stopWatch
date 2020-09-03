@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 
 import "./styles.css";
 
 class Clock extends Component {
+    
     constructor(props) {
          super(props);
          this.state = {
+             count: 0,
              isStarted: false,
-             actual_time: 0    
+             actual_time: moment().hours(0).minutes(0).seconds(0).format('HH : mm : ss')
          }
          this.start_timer = this.start_timer.bind(this);
          this.stop_timer = this.stop_timer.bind(this);
@@ -15,8 +18,13 @@ class Clock extends Component {
      } 
      
          
-    increment_time() {
-        this.setState({actual_time: this.state.actual_time + 1});
+    increment_time() { 
+        
+        this.setState((state, props) => ({
+                actual_time : moment().hours(0).minutes(0).seconds(state.count).format('HH : mm : ss'),
+                count: state.count+1
+        }));
+        
     }
 
     start_timer = () => {
@@ -44,17 +52,19 @@ class Clock extends Component {
         
     }
 
-    restart_timer() {
+    restart_timer() {          
+        
         if(this.state.actual_time > 0) {
             this.setState((state, props) => ({
-                actual_time: state.actual_time = 0,
+                actual_time: state.actual_time = moment().hours(0).minutes(0).seconds(0).format('HH : mm : ss'),
             }));    
         }
     }
 
     componentDidMount() {
         document.title = "Stopwatch"
-     
+       
+        // hours(0).minutes(0).seconds(0).format('HH : mm : ss')
         // this.start_timer();
     }
 
@@ -75,9 +85,13 @@ class Clock extends Component {
                 <button name="stop" onClick={this.stop_timer}>
                     Pause
                 </button>
-                <button name="restart" onClick={this.restart_timer}>
-                    Restart
-                </button>
+               <div name="hidden-button">
+                {this.state.isStarted ? false : null}
+                    <button name="restart" onClick={this.restart_timer}>
+                        Restart
+                    </button>
+               </div>
+                
             </div>
         </div>
     );
