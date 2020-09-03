@@ -54,9 +54,10 @@ class Clock extends Component {
 
     restart_timer() {          
         
-        if(this.state.actual_time > 0) {
+        if(this.state.count > 0) {
             this.setState((state, props) => ({
-                actual_time: state.actual_time = moment().hours(0).minutes(0).seconds(0).format('HH : mm : ss'),
+                actual_time:  moment().hours(0).minutes(0).seconds(0).format('HH : mm : ss'),
+                count: 0
             }));    
         }
     }
