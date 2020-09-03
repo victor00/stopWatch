@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment';
+import Button from '../button/Button';
 
 import "./styles.css";
 
@@ -12,15 +13,15 @@ class Clock extends Component {
              isStarted: false,
              actual_time: moment().hours(0).minutes(0).seconds(0).format('HH : mm : ss')
          }
-         this.start_timer = this.start_timer.bind(this);
-         this.stop_timer = this.stop_timer.bind(this);
-         this.restart_timer = this.restart_timer.bind(this);
+        //  this.start_timer = this.start_timer.bind(this);
+        //  this.stop_timer = this.stop_timer.bind(this);
+        //  this.restart_timer = this.restart_timer.bind(this);
      } 
      
          
     increment_time() { 
         
-        this.setState((state, props) => ({
+        this.setState((state) => ({
                 actual_time : moment().hours(0).minutes(0).seconds(state.count).format('HH : mm : ss'),
                 count: state.count+1
         }));
@@ -42,17 +43,18 @@ class Clock extends Component {
        }        
     }
 
-    stop_timer() {
-        clearInterval(this.interval);
+    
+    stop_timer = () => {
         
-        // Ao pausar volta a Flag para Falso
-        this.setState((state, props) => ({
-            isStarted: false 
-        }));
-        
+            // Ao pausar volta a Flag para Falso
+            this.setState((state, props) => ({
+                isStarted: false 
+            }));
+            clearInterval(this.interval);
+       
     }
 
-    restart_timer() {          
+    restart_timer = () => {          
         
         if(this.state.count > 0) {
             this.setState((state, props) => ({
@@ -64,7 +66,6 @@ class Clock extends Component {
 
     componentDidMount() {
         document.title = "Stopwatch"
-       
         // hours(0).minutes(0).seconds(0).format('HH : mm : ss')
         // this.start_timer();
     }
@@ -78,8 +79,14 @@ class Clock extends Component {
         <div className="clock">
             <p>Stopwatch</p>
             <div name="initialState">{this.state.actual_time}</div>
-
-            <div className="actions">
+            <div name="buttonClass">
+                <Button startButton={this.start_timer} stopButton={this.stop_timer} restartButton={this.restart_timer}/>
+            
+            
+                
+                
+            </div>
+            {/* <div className="actions">
                 <button name="start" onClick={this.start_timer}>
                      Start
                 </button>
@@ -91,9 +98,9 @@ class Clock extends Component {
                     <button name="restart" onClick={this.restart_timer}>
                         Restart
                     </button>
-               </div>
+               </div> */}
                 
-            </div>
+            {/* </div> */}
         </div>
     );
     }
