@@ -6,14 +6,14 @@
     display: none;
 }
 
-.button .actions {
+.button  {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 
-.button .actions button{
+.button button{
     width: auto;
     
    
@@ -32,7 +32,7 @@
     font: 500 1.6rem Russo One;
 
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 
 
@@ -40,20 +40,18 @@
     transition: all 0.2s;
 }
 
-.button .actions button:hover {
-    background: #da552f;
-    color: #FFF;
-    opacity: 0.7;
+.button button:hover {
+    opacity: 0.4;
 }
 
-.button .actions button[name=start] { 
+.button .Start { 
     background: #6FCF97;
 }
 
-.button .actions button[name=stop] {
+.button .Stop {
     background: #eb5757;
 }
 
-.button .actions button[name=restart] {
+.button .Restart {
     background: #f2994a;
 }

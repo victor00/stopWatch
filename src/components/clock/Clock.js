@@ -11,11 +11,9 @@ class Clock extends Component {
          this.state = {
              count: 0,
              isStarted: false,
-             actual_time: moment().hours(0).minutes(0).seconds(0).format('HH : mm : ss')
+             actual_time: moment().hours(0).minutes(0).seconds(0).format('HH : mm : ss'),
+             laps: []
          }
-        //  this.start_timer = this.start_timer.bind(this);
-        //  this.stop_timer = this.stop_timer.bind(this);
-        //  this.restart_timer = this.restart_timer.bind(this);
      } 
      
          
@@ -64,45 +62,34 @@ class Clock extends Component {
         }
     }
 
-    componentDidMount() {
-        document.title = "Stopwatch"
-        // hours(0).minutes(0).seconds(0).format('HH : mm : ss')
-        // this.start_timer();
-    }
-
-    componentWillUnmount() {
-        // clearInterval(this.interval);
-    }
      
     render () {
-    return (
-        <div className="clock">
-            <p>Stopwatch</p>
-            <div name="initialState">{this.state.actual_time}</div>
-            <div name="buttonClass">
-                <Button startButton={this.start_timer} stopButton={this.stop_timer} restartButton={this.restart_timer}/>
-            
-            
-                
-                
+        return (
+            <div className="clock">
+                <p>Stopwatch</p>
+                <div name="initialState">{this.state.actual_time}</div>
+                <div className="buttonClass">
+                    {!this.state.isStarted ? 
+                        <>
+                        <Button action={this.start_timer} displayBtnName="Start" />
+                        {this.state.count>0 ?
+                            <Button action={this.restart_timer} displayBtnName="Restart" />
+                            : null
+                        }   
+                        </>
+                        :
+                        <>
+                        <Button action={this.stop_timer} displayBtnName="Stop" />
+                        {this.state.count>0 ?
+                            <Button action={this.restart_timer} displayBtnName="Restart" />
+                            : null
+                        }
+                        </>
+                    }
+                    
+                </div>
             </div>
-            {/* <div className="actions">
-                <button name="start" onClick={this.start_timer}>
-                     Start
-                </button>
-                <button name="stop" onClick={this.stop_timer}>
-                    Pause
-                </button>
-               <div name="hidden-button">
-                {this.state.isStarted ? false : null}
-                    <button name="restart" onClick={this.restart_timer}>
-                        Restart
-                    </button>
-               </div> */}
-                
-            {/* </div> */}
-        </div>
-    );
+        );
     }
 };
 
