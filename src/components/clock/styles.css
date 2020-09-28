@@ -1,52 +1,73 @@
-.clock  {
-    display: block;
-    justify-content: center;
-    align-items: center;
-
-    
-
-    margin-bottom: 100px;
-    max-width: 100%;
-    
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+.container {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 20vh 70vh 10vh;
+    
+    grid-template-areas:
+    "h h"
+    "m a" 
+    ;
+    
+    grid-gap: 40px;
 
-.clock p {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font: 700 2.4rem Russo One;
-    margin-bottom: 100px;
-    max-width: 100%;
-    font-weight: bold;
-    font-size: 5vw;
+
+}
+
+.container header {
+    grid-area: h;
+    height: 100px;
+    
+   
 } 
 
-.clock div[name=initialState] {
-    margin-bottom: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.container header p {  
+    height: 100px;
     font: 700 2.4rem Russo One;
-
     font-weight: bold;
     font-size: 5vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+} 
+
+
+
+.container main {
+    grid-area: m;
+    height: 100px;   
 }
 
-.clock .buttonClass {
+.container main div[name=initialState] {
+    height: 100px;
+    font: 700 2.4rem Russo One;
+    font-weight: bold;
+    font-size: 5vw;
+
+    margin-left: 500px;
+    margin-top: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.clock .buttonClass {
-    
-  
+.container .buttonClass {
+    margin-left: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 40px;
 
     padding: 10px 32px;
     line-height: 24px;  
     border-radius: 10px;
-    margin-top: 5px;
     text-align: center;
     font-weight: bold;
     cursor: pointer;
@@ -56,12 +77,31 @@
 
     font: 500 1.6rem Russo One;
 
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-
-
-
     transition: all 0.2s;
 }
 
+.container aside {
+    grid-area: a;
+    
+    
+    display: flex;
+    justify-content: center;
+    align-self: flex-start;
+
+    padding: 10px 32px;
+    line-height: 24px;  
+    border-radius: 10px;
+    margin-top: 5px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 20px;
+    color: #a9a9a9;
+
+    font: 700 2.4rem Russo One;
+
+}
+
+.container aside p {
+    color: black;
+}

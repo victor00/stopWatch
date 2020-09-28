@@ -41,6 +41,11 @@ class Clock extends Component {
        }        
     }
 
+    lap = () => {
+        this.setState((state, props) => ({
+            laps: [...this.state.laps, this.state.actual_time]
+        }));
+    }
     
     stop_timer = () => {
         
@@ -57,7 +62,8 @@ class Clock extends Component {
         if(this.state.count > 0) {
             this.setState((state, props) => ({
                 actual_time:  moment().hours(0).minutes(0).seconds(0).format('HH : mm : ss'),
-                count: 0
+                count: 0,
+                lap: []
             }));    
         }
     }
@@ -65,30 +71,56 @@ class Clock extends Component {
      
     render () {
         return (
-            <div className="clock">
-                <p>Stopwatch</p>
-                <div name="initialState">{this.state.actual_time}</div>
-                <div className="buttonClass">
-                    {!this.state.isStarted ? 
-                        <>
-                        <Button action={this.start_timer} displayBtnName="Start" />
-                        {this.state.count>0 ?
-                            <Button action={this.restart_timer} displayBtnName="Restart" />
-                            : null
-                        }   
-                        </>
-                        :
-                        <>
-                        <Button action={this.stop_timer} displayBtnName="Stop" />
-                        {this.state.count>0 ?
-                            <Button action={this.restart_timer} displayBtnName="Restart" />
-                            : null
-                        }
-                        </>
-                    }
-                    
-                </div>
-            </div>
+            <div className="container">
+                    <header><p>Stopwatch</p></header>
+                    <main>
+                        <div name="initialState">{this.state.actual_time}</div>
+                        <div className="buttonClass">
+                            {!this.state.isStarted ? 
+                                <>
+                                <Button action={this.start_timer} displayBtnName="Start" />
+                                {this.state.count>0 ?
+                                    <Button action={this.restart_timer} displayBtnName="Restart" />
+                                    : null
+                                }   
+                                </>
+                                :
+                                <>
+                                <Button action={this.stop_timer} displayBtnName="Stop" />
+                                {this.state.count>0 ?
+                                    <Button action={this.restart_timer} displayBtnName="Restart" />
+                                    : null
+                                }
+                                {this.state.count>0 ?
+                                    <Button action={this.lap} displayBtnName="Lap" />
+                                    : null
+                                }
+                                </>
+                            }
+                            
+                        </div>
+                    </main>
+                    <aside>
+                        <p>Laps: </p>
+                            <ul>                  
+                                {this.state.isStarted ?
+                                    <>
+                                    {this.state.count>0 ?
+                                        this.state.laps.map((lap) => 
+                                        <ol>
+                                            <span>{lap}</span>
+                                        </ol>
+                                        )
+                                        : null
+                                    } 
+                                    </>
+                                    :
+                                    <>
+                                    </>
+                                }                                     
+                            </ul>
+                     </aside>
+             </div>
         );
     }
 };

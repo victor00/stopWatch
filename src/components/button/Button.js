@@ -18,8 +18,7 @@ const Button = (props) => {
                 </div>
             </div>
                     
-        );
-        
+        );    
 }
 
 
