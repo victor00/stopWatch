@@ -42,8 +42,9 @@ class Clock extends Component {
     }
 
     lap = () => {
+        let new_object = {'key': this.state.laps.length+1, 'time': this.state.actual_time}
         this.setState((state, props) => ({
-            laps: [...this.state.laps, this.state.actual_time]
+            laps: [...this.state.laps, new_object]
         }));
     }
     
@@ -63,7 +64,7 @@ class Clock extends Component {
             this.setState((state, props) => ({
                 actual_time:  moment().hours(0).minutes(0).seconds(0).format('HH : mm : ss'),
                 count: 0,
-                lap: []
+                laps: []
             }));    
         }
     }
@@ -107,8 +108,8 @@ class Clock extends Component {
                                     <>
                                     {this.state.count>0 ?
                                         this.state.laps.map((lap) => 
-                                        <ol>
-                                            <span>{lap}</span>
+                                        <ol key = {lap.key}>
+                                            <span>{lap.time}</span>
                                         </ol>
                                         )
                                         : null
