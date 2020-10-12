@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
 import moment from 'moment';
 import Button from '../button/Button';
+// import Toggle from "../Toggle/index";
 
 import "./styles.css";
 
@@ -12,7 +13,7 @@ class Clock extends Component {
              count: 0,
              isStarted: false,
              actual_time: moment().hours(0).minutes(0).seconds(0).format('HH : mm : ss'),
-             laps: []
+             laps: []   
          }
      } 
      
@@ -69,7 +70,7 @@ class Clock extends Component {
         }
     }
 
-     
+    
     render () {
         return (
             <div className="container">
