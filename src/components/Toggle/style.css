@@ -125,3 +125,11 @@
     width: 15px;
     transform: translate(-10px, 0);
 }
+
+
+
+.toggle .night {
+    background-color: black;
+    background: black;
+}
+
